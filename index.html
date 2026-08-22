@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cash-Flow | Salary & Expense Tracker</title>
+
+    <link rel="stylesheet" href="style.css">
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <span>Cash</span>-Flow
+        </div>
+
+        <div class="currency-box">
+            <label for="currencySelect">Currency:</label>
+
+            <select id="currencySelect">
+                <option value="INR">INR ₹</option>
+                <option value="USD">USD $</option>
+                <option value="EUR">EUR €</option>
+                <option value="GBP">GBP £</option>
+                <option value="JPY">JPY ¥</option>
+            </select>
+        </div>
+    </header>
+
+    <main class="container">
+
+
+        <section class="hero">
+            <p class="small-title">PERSONAL FINANCE</p>
+
+            <h1>
+                Take control of your
+                <span>cash flow.</span>
+            </h1>
+
+            <p>
+                Track your salary, manage expenses and monitor
+                your remaining balance in real time.
+            </p>
+        </section>
+
+
+        <section class="card salary-card">
+
+            <div class="section-heading">
+                <div>
+                    <p class="section-label">MONTHLY INCOME</p>
+                    <h2>Enter your salary</h2>
+                </div>
+
+                <div class="icon income-icon">
+                    ₹
+                </div>
+            </div>
+
+            <form id="salaryForm">
+
+                <label for="salary">
+                    Total Salary
+                </label>
+
+                <div class="input-wrapper">
+                    <span id="salarySymbol">₹</span>
+
+                    <input type="number" id="salary" placeholder="Enter your salary" step="0.01">
+                </div>
+
+                <button type="submit" class="primary-btn">
+                    Save Salary
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- Dashboard -->
+        <section class="dashboard">
+
+            <!-- Salary -->
+            <div class="stat-card">
+                <p>Total Salary</p>
+                <h2 id="salaryDisplay">₹0.00</h2>
+            </div>
+
+            <!-- Expenses -->
+            <div class="stat-card">
+                <p>Total Expenses</p>
+                <h2 id="expenseDisplay">₹0.00</h2>
+            </div>
+
+            <!-- Balance -->
+            <div class="stat-card balance-card">
+                <p>Remaining Balance</p>
+                <h2 id="balanceDisplay">₹0.00</h2>
+            </div>
+
+        </section>
+
+        <!-- Warning -->
+        <div id="warningBox" class="warning-box hidden">
+            <strong>⚠ Critical Balance Warning</strong>
+            <p>
+                Your remaining balance has dropped below 10% of your
+                total salary.
+            </p>
+        </div>
+
+        <!-- Expense Section -->
+        <section class="card">
+
+            <div class="section-heading">
+                <div>
+                    <p class="section-label">EXPENSE MANAGEMENT</p>
+                    <h2>Add an expense</h2>
+                </div>
+
+                <div class="icon expense-icon">
+                    +
+                </div>
+            </div>
+
+            <form id="expenseForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="expenseName">
+                            Expense Name
+                        </label>
+
+                        <input type="text" id="expenseName" placeholder="e.g. Food, Rent, Travel">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="expenseAmount">
+                            Expense Amount
+                        </label>
+
+                        <div class="input-wrapper">
+                            <span id="expenseSymbol">₹</span>
+
+                            <input type="number" id="expenseAmount" placeholder="Enter amount" min="0" step="0.01">
+                        </div>
+                    </div>
+
+                </div>
+
+                <button type="submit" class="primary-btn">
+                    Add Expense
+                </button>
+
+            </form>
+
+            <div id="errorMessage" class="error-message"></div>
+
+        </section>
+
+        <!-- Expense List -->
+        <section class="card">
+
+            <div class="section-heading">
+                <div>
+                    <p class="section-label">TRANSACTIONS</p>
+                    <h2>Your expenses</h2>
+                </div>
+
+                <span id="expenseCount" class="count">
+                    0 expenses
+                </span>
+            </div>
+
+            <div id="expenseList" class="expense-list">
+
+                <div id="emptyState" class="empty-state">
+                    <div class="empty-icon">₹</div>
+
+                    <h3>No expenses yet</h3>
+
+                    <p>
+                        Add your first expense to start tracking
+                        your spending.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Chart -->
+        <section class="card chart-card">
+
+            <div class="section-heading">
+                <div>
+                    <p class="section-label">VISUALIZATION</p>
+                    <h2>Financial overview</h2>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="expenseChart"></canvas>
+            </div>
+
+        </section>
+
+        <!-- Report -->
+        <section class="report-section">
+
+            <button id="downloadReport" class="secondary-btn">
+                Download PDF Report
+            </button>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>
+            Cash-Flow © 2026 | Salary & Expense Tracker
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
